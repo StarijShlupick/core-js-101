@@ -462,8 +462,13 @@ function getIdentityMatrix(/* n */) {
  *     0, 100 => [ 0, 1, 2, ..., 100 ]
  *     3, 3   => [ 3 ]
  */
-function getIntervalArray(/* start, end */) {
-  throw new Error('Not implemented');
+function getIntervalArray(start, end) {
+  return Array.from(
+    {
+      length: (end - start) + 1,
+    },
+    (v, i) => start + i,
+  );
 }
 
 /**
@@ -477,8 +482,9 @@ function getIntervalArray(/* start, end */) {
  *   [ 'a', 'a', 'a', 'a' ]  => [ 'a' ]
  *   [ 1, 1, 2, 2, 3, 3, 4, 4] => [ 1, 2, 3, 4]
  */
-function distinct(/* arr */) {
-  throw new Error('Not implemented');
+function distinct(arr) {
+  const uniqArray = [...new Set(arr)];
+  return uniqArray;
 }
 
 /**
@@ -569,8 +575,19 @@ function getElementByIndexes(/* arr, indexes */) {
  *   [ 1, 2, 3, 4, 5, 6, 7, 8 ]   =>  [ 5, 6, 7, 8, 1, 2, 3, 4 ]
  *
  */
-function swapHeadAndTail(/* arr */) {
-  throw new Error('Not implemented');
+function swapHeadAndTail(arr) {
+  let finalArray = [];
+  if (arr.length % 2 === 0) {
+    const firstPart = arr.slice(0, (arr.length / 2));
+    const lastPart = arr.slice((arr.length / 2), arr.length);
+    finalArray = [...lastPart, ...firstPart];
+  } else {
+    const firstPart = arr.slice(0, Math.floor(arr.length / 2));
+    const middlePart = arr.slice(Math.floor(arr.length / 2), (Math.floor(arr.length / 2) + 1));
+    const lastPart = arr.slice((Math.floor(arr.length / 2) + 1), arr.length);
+    finalArray = [...lastPart, ...middlePart, ...firstPart];
+  }
+  return finalArray;
 }
 
 

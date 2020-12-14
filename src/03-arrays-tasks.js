@@ -306,7 +306,8 @@ function getPositivesCount(arr) {
   if (arr.length === 0) {
     return 0;
   }
-  const result = arr.filter((element) => Number(element) > 0);
+  const result = arr.filter((element) => typeof (element) === 'number')
+    .filter((element) => element > 0);
   return result.length;
 }
 
@@ -357,10 +358,12 @@ function getItemsSum(arr) {
  *  [ null, undefined, NaN, false, 0, '' ]  => 6
  */
 function getFalsyValuesCount(arr) {
-  if (arr.length === 0) return 0;
-  return arr
-    .filter((element) => !!element)
-    .reduce((accamulator, element) => accamulator + element, 0);
+  if (arr.length === 0) {
+    return 0;
+  }
+  const filtredArray = arr.map((element) => Boolean(element))
+    .filter((element) => element === false);
+  return filtredArray.length;
 }
 
 /**
